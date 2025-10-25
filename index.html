@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projeto Consumo Consciente - Site</title>
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <link rel="stylesheet" href="style.css">
+   <script src="main.js" defer></script>
+  <style>
+   
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">CC</div>
+        <div>
+          <div style="font-size:14px;color:var(--muted)">Projeto</div>
+          <h1>Consumo Consciente</h1>
+          <div class="small">Extensão comunitária — consumo responsável e sustentabilidade</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#home">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#questionario">Questionário</a>
+        <a href="#resultados">Resultados</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <div class="card hero" id="home">
+          <h2>Bem-vindo ao portal do projeto</h2>
+          <p class="lead">Um ponto de encontro digital para divulgar ações, aplicar o questionário e acompanhar os resultados do nosso trabalho de extensão sobre consumo consciente.</p>
+
+          <div class="actions">
+            <button class="btn" onclick="document.getElementById('questionario').scrollIntoView({behavior:'smooth'})">Responder Questionário</button>
+            <button class="btn secondary" onclick="downloadPDF()">Baixar questionário (PDF)</button>
+          </div>
+
+          <div class="statgrid" style="margin-top:22px">
+            <div class="stat"><div class="small">Conhecimento</div><strong id="kno">80%</strong><div class="small">Já ouviram falar</div></div>
+            <div class="stat"><div class="small">Separação de lixo</div><strong id="sep">55%</strong><div class="small">Separam sempre</div></div>
+            <div class="stat"><div class="small">Interesse</div><strong id="int">75%</strong><div class="small">Participariam de oficinas</div></div>
+          </div>
+        </div>
+
+        <div class="card" id="sobre" style="margin-top:16px">
+          <h3>Sobre o projeto</h3>
+          <p class="small">Este projeto visa mapear práticas e promover oficinas educativas para a comunidade local, incentivando atitudes que reduzem desperdício e gastos domésticos, além de fortalecer a economia circular.</p>
+          <ul class="small">
+            <li>Oficinas práticas (reutilização, compostagem, limpeza ecológica)</li>
+            <li>Campanhas de coleta seletiva</li>
+            <li>Materiais educativos e parcerias locais</li>
+          </ul>
+        </div>
+
+        <div class="card" id="questionario" style="margin-top:16px">
+          <h3>Questionário rápido</h3>
+          <p class="small">Ajude a mapear a comunidade. Respostas anônimas — aprox. 3 minutos.</p>
+
+          <form id="surveyForm">
+            <label>1. Você já ouviu falar sobre 'consumo consciente'?</label>
+            <select name="q1" required>
+              <option value="">-- selecione --</option>
+              <option value="Sim">Sim</option>
+              <option value="Nao">Não</option>
+            </select>
+
+            <label>2. Você separa o lixo reciclável?</label>
+            <select name="q2" required>
+              <option value="">-- selecione --</option>
+              <option value="Sempre">Sempre</option>
+              <option value="AsVezes">Às vezes</option>
+              <option value="Nunca">Nunca</option>
+            </select>
+
+            <label>3. Você economiza água e energia?</label>
+            <select name="q3" required>
+              <option value="">-- selecione --</option>
+              <option value="Sim">Sim</option>
+              <option value="Nao">Não</option>
+            </select>
+
+            <label>4. Participaria de oficinas sobre sustentabilidade?</label>
+            <select name="q4" required>
+              <option value="">-- selecione --</option>
+              <option value="Sim">Sim</option>
+              <option value="Talvez">Talvez</option>
+              <option value="Nao">Não</option>
+            </select>
+
+            <label>5. Idade</label>
+            <input type="text" name="idade" placeholder="Ex: 34" />
+
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button type="submit" class="btn">Enviar respostas</button>
+              <button type="button" class="btn secondary" onclick="exportCSV()">Exportar (CSV)</button>
+            </div>
+
+            <div id="msg" style="margin-top:10px;color:#bde4c6"></div>
+          </form>
+        </div>
+
+        <div class="card" id="resultados" style="margin-top:16px">
+          <h3>Resultados</h3>
+          <canvas id="barChart" style="max-width:100%"></canvas>
+          <div style="height:16px"></div>
+          <canvas id="pieChart" style="max-width:100%"></canvas>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card">
+          <h4>Documentos</h4>
+          <p class="small">Baixe o questionário em PDF — imprima e aplique em campo.</p>
+          <button class="btn" onclick="downloadPDF()">Baixar PDF</button>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4>Contato</h4>
+          <p class="small">Coordenação do projeto: Felipe</p>
+            <p class="small">E-mail: felipefarias.devs@gmail.com</p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4>Como usar</h4>
+          <ol class="small">
+            <li>Aplique o questionário no papel ou link</li>
+            <li>Importe respostas ou use o formulário</li>
+            <li>Visualize resultados aqui e exporte CSV</li>
+          </ol>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="small">Projeto de Extensão • Consumo Consciente — Desenvolvido por Felipe Farias</footer>
+  </div>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+</html>
