@@ -16,7 +16,7 @@ const sample = {
 
 
     function downloadPDF(){
-      const url = 'sandbox:/mnt/data/Questionario_Economia_Sustentavel.pdf';
+      const url = './Questionario_Economia_Sustentavel.pdf';
     
       window.open(url,'_blank');
     }
